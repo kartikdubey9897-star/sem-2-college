@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM & Events Lab</title>
+    <style>
+        /* --- CSS STYLING --- */
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #17e9b4; /* Bright mint/green background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #000000;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            max-width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #777;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 22px;
+            color: #000000;
+            line-height: 1.4;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1 id="main-heading">JavaScript is a scripting language used to make web pages interactive and dynamic.</h1>
+        
+        <input type="text" id="text-input" value="JavaScript is a scripting language used to">
+
+        <div class="button-container">
+            <button id="btn-change-heading">Change Heading</button>
+            <button id="btn-change-bg">Change Background</button>
+            <button id="btn-increase-font">Increase Font Size</button>
+            <button id="btn-toggle-para">Show/Hide Paragraph</button>
+            <button id="btn-reset">Reset</button>
+        </div>
+
+        <p id="sample-paragraph">This is a sample paragraph. JavaScript events can dynamically change content.</p>
+    </div>
+
+    <script>
+        // DOM Element Selectors
+        const mainHeading = document.getElementById('main-heading');
+        const textInput = document.getElementById('text-input');
+        const sampleParagraph = document.getElementById('sample-paragraph');
+        const cardContainer = document.querySelector('.card');
+
+        const btnChangeHeading = document.getElementById('btn-change-heading');
+        const btnChangeBg = document.getElementById('btn-change-bg');
+        const btnIncreaseFont = document.getElementById('btn-increase-font');
+        const btnTogglePara = document.getElementById('btn-toggle-para');
+        const btnReset = document.getElementById('btn-reset');
+
+        // State Tracking for Reset functionality
+        const originalHeadingText = mainHeading.innerText;
+        let defaultFontSize = 22; 
+
+        // 1. Change Heading Action
+        btnChangeHeading.addEventListener('click', () => {
+            mainHeading.innerText = textInput.value;
+        });
+
+        // 2. Change Background Action
+        btnChangeBg.addEventListener('click', () => {
+            // Toggles between a soft gray tint and pure white
+            if (cardContainer.style.backgroundColor === 'rgb(240, 240, 240)') {
+                cardContainer.style.backgroundColor = '#ffffff';
+            } else {
+                cardContainer.style.backgroundColor = '#f0f0f0';
+            }
+        });
+
+        // 3. Increase Font Size Action
+        btnIncreaseFont.addEventListener('click', () => {
+            defaultFontSize += 2;
+            sampleParagraph.style.fontSize = defaultFontSize + 'px';
+        });
+
+        // 4. Show/Hide Paragraph Action
+        btnTogglePara.addEventListener('click', () => {
+            if (sampleParagraph.style.display === 'none') {
+                sampleParagraph.style.display = 'block';
+            } else {
+                sampleParagraph.style.display = 'none';
+            }
+        });
+
+        // 5. Reset App Action
+        btnReset.addEventListener('click', () => {
+            mainHeading.innerText = originalHeadingText;
+            textInput.value = "JavaScript is a scripting language used to";
+            cardContainer.style.backgroundColor = '#ffffff';
+            defaultFontSize = 22;
+            sampleParagraph.style.fontSize = '22px';
+            sampleParagraph.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px gray;
+            text-align: center;
+            width: 500px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Result Calculator</h1>
+
+    <label>Enter Number of Subjects</label><br>
+    <input type="number" id="subjects" min="1"><br><br>
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function calculateResult() {
+
+    let numSubjects = parseInt(document.getElementById("subjects").value);
+
+    let totalMarks = 0;
+
+    // Loop
+    for(let i = 1; i <= numSubjects; i++) {
+        let marks = parseFloat(prompt("Enter marks for Subject " + i));
+        totalMarks += marks;
+    }
+
+    let percentage = totalMarks / numSubjects;
+    let grade;
+
+    // Conditions
+    if(percentage >= 90) {
+        grade = "A+";
+    }
+    else if(percentage >= 75) {
+        grade = "A";
+    }
+    else if(percentage >= 60) {
+        grade = "B";
+    }
+    else if(percentage >= 40) {
+        grade = "C";
+    }
+    else {
+        grade = "Fail";
+    }
+
+    document.getElementById("result").innerHTML =
+        "Total Marks: " + totalMarks +
+        "<br>Percentage: " + percentage.toFixed(2) + "%" +
+        "<br>Grade: " + grade;
+}
+</script>
+
+</body>
+</html>

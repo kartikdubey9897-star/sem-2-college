@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Salary Management System</title>
+    <style>
+        body{
+            font-family: Arial;
+            text-align:center;
+            background:#f2f2f2;
+        }
+
+        .container{
+            width:600px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+        }
+
+        input{
+            width:250px;
+            padding:10px;
+            margin:5px;
+        }
+
+        button{
+            padding:10px 15px;
+            margin:5px;
+            background:green;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        #output{
+            margin-top:20px;
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Employee Salary Management System</h1>
+
+<input type="text" id="name" placeholder="Employee Name"><br>
+<input type="text" id="id" placeholder="Employee ID"><br>
+<input type="number" id="salary" placeholder="Salary"><br>
+<input type="text" id="department" placeholder="Department"><br>
+
+<button onclick="addEmployee()">Add Employee</button>
+<br><br>
+
+<button onclick="displayAll()">Display All</button>
+<button onclick="salaryGreater()">Salary > 50000</button>
+<button onclick="totalSalary()">Total Salary</button>
+<button onclick="averageSalary()">Average Salary</button>
+<button onclick="countDepartment()">Count by Department</button>
+
+<div id="output"></div>
+
+</div>
+
+<script>
+
+let employees = [];
+
+function addEmployee(){
+
+    let employee = {
+        name: document.getElementById("name").value,
+        id: document.getElementById("id").value,
+        salary: Number(document.getElementById("salary").value),
+        department: document.getElementById("department").value
+    };
+
+    employees.push(employee);
+
+    alert("Employee Added Successfully");
+}
+
+function displayAll(){
+
+    let result = "";
+
+    for(let emp of employees){
+        result += `${emp.name} | ${emp.id} | ${emp.salary} | ${emp.department}<br>`;
+    }
+
+    document.getElementById("output").innerHTML = result;
+}
+
+function salaryGreater(){
+
+    let result = "";
+
+    for(let emp of employees){
+
+        if(emp.salary > 50000){
+            result += `${emp.name} - ₹${emp.salary}<br>`;
+        }
+    }
+
+    document.getElementById("output").innerHTML = result;
+}
+
+function totalSalary(){
+
+    let total = 0;
+
+    for(let emp of employees){
+        total += emp.salary;
+    }
+
+    document.getElementById("output").innerHTML =
+    "Total Salary = ₹" + total;
+}
+
+function averageSalary(){
+
+    let total = 0;
+
+    for(let emp of employees){
+        total += emp.salary;
+    }
+
+    let avg = total / employees.length;
+
+    document.getElementById("output").innerHTML =
+    "Average Salary = ₹" + avg.toFixed(2);
+}
+
+function countDepartment(){
+
+    let deptCount = {};
+
+    for(let emp of employees){
+
+        if(deptCount[emp.department]){
+            deptCount[emp.department]++;
+        }
+        else{
+            deptCount[emp.department] = 1;
+        }
+    }
+
+    let result = "";
+
+    for(let dept in deptCount){
+        result += dept + " : " + deptCount[dept] + "<br>";
+    }
+
+    document.getElementById("output").innerHTML = result;
+}
+
+</script>
+
+</body>
+</html>

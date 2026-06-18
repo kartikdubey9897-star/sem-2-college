@@ -1,0 +1,17 @@
+body {
+    scroll-behavior: smooth;
+}
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(to right, #000428, #004e92);
+}
+
+.hero h1 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+section {
+    padding-top: 80px;
+}
