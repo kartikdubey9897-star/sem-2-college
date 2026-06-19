@@ -31,7 +31,7 @@ class Account {
         this.balance = balance;
     }
 
-    // Money deposit karne ka method
+    
     public void deposit(double amount) {
         this.balance += amount;
         System.out.println("Amount Deposited: " + amount);
