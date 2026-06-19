@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 
 export default function App() {
-  // 1. useState se counter ki state banayi (shuruat me value 0 hogi)
+  
   const [count, setCount] = useState(0);
 
-  // 2. Number badhane ka function
+  
   const handleIncrement = () => {
     setCount(count + 1);
   };
 
-  // 3. Number kam karne ka function
+  
   const handleDecrement = () => {
     setCount(count - 1);
   };
 
-  // 4. Number ko wapas zero karne ka function
+  
   const handleReset = () => {
     setCount(0);
   };
@@ -24,10 +24,10 @@ export default function App() {
       <div style={styles.card}>
         <h1 style={styles.heading}>React Counter<br />Application</h1>
         
-        {/* Screen par badalta hua number dikhane ke liye */}
+        {}
         <div style={styles.counterValue}>{count}</div>
         
-        {/* Buttons Group */}
+        {}
         <div style={styles.buttonRow}>
           <button style={styles.button} onClick={handleIncrement}>
             Increment (+)
@@ -47,9 +47,7 @@ export default function App() {
   );
 }
 
-// =========================================================
-// EXACT CSS STYLING OBJECTS (Photo Jaisa Dikhne Ke Liye)
-// =========================================================
+
 const styles = {
   container: {
     backgroundColor: '#f3f3f3',
