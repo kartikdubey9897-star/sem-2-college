@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 export default function App() {
-  // 1. Form ke data ko track karne ke liye state banayi
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: ''
   });
 
-  // 2. API ke response aur loading status ko track karne ke liye state
+  
   const [statusMessage, setStatusMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 3. Input fields ke badalye hue data ko save karne ka function
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -21,19 +21,19 @@ export default function App() {
     });
   };
 
-  // 4. Form submit hone par chalne wala function
+  
   const handleSubmit = (e) => {
-    e.preventDefault(); // Page ko reload hone se rokne ke liye
-    setIsSubmitting(true); // Loading chalu
+    e.preventDefault(); 
+    setIsSubmitting(true); 
     setStatusMessage('Sending data to API...');
   };
 
-  // 5. useEffect Hook: Jab isSubmitting true hoga, tab yeh API call karega
+  
   useEffect(() => {
-    // Agar submit button nahi daba hai, toh API call mat karo
+    
     if (!isSubmitting) return;
 
-    // Ek nakli (mock) API URL jahan hum data bhej rahe hain
+    
     const apiURL = 'https://typicode.com';
 
     fetch(apiURL, {
@@ -45,11 +45,11 @@ export default function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('API Response:', data); // Console me data dekhne ke liye
+        console.log('API Response:', data); 
         setStatusMessage('Success! Data registered successfully.');
-        setIsSubmitting(false); // Loading band
+        setIsSubmitting(false); 
         
-        // Form ko khali karne ke liye
+        
         setFormData({ name: '', email: '', password: '' }); 
       })
       .catch((error) => {
@@ -58,7 +58,7 @@ export default function App() {
         setIsSubmitting(false);
       });
 
-  }, [isSubmitting]); // Yeh useEffect tabhi chalega jab isSubmitting ki value badlegi
+  }, [isSubmitting]); 
 
   return (
     <div style={styles.container}>
@@ -76,7 +76,7 @@ export default function App() {
           required
         />
 
-        {/* Email Input */}
+        {}
         <input 
           type="email"
           name="email"
@@ -87,7 +87,7 @@ export default function App() {
           required
         />
 
-        {/* Password Input */}
+        {}
         <input 
           type="password"
           name="password"
@@ -98,21 +98,19 @@ export default function App() {
           required
         />
 
-        {/* Register Button */}
+        {}
         <button type="submit" style={styles.button} disabled={isSubmitting}>
           {isSubmitting ? 'Please wait...' : 'Register'}
         </button>
 
-        {/* API Response Status Dikhane Ke Liye */}
+        {}
         {statusMessage && <p style={styles.status}>{statusMessage}</p>}
       </form>
     </div>
   );
 }
 
-// =========================================================
-// EXACT CSS STYLING OBJECTS (Photo Jaisa Dikhne Ke Liye)
-// =========================================================
+
 const styles = {
   container: {
     backgroundColor: '#f3f3f3',
@@ -148,13 +146,13 @@ const styles = {
     margin: '10px 0',
     fontSize: '14px',
     border: '1px solid #999',
-    borderRadius: '0px', // Photo me flat corners hain
+    borderRadius: '0px', 
     boxSizing: 'border-box',
     outline: 'none',
     color: '#333'
   },
   button: {
-    backgroundColor: '#008000', // Green Color
+    backgroundColor: '#008000', 
     color: '#ffffff',
     border: 'none',
     padding: '10px 20px',
